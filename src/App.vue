@@ -22,14 +22,22 @@ export default {
   data() {
     return {
       auth: false,
+      usuarios: []
     }
   },
-  methods: {
-    checkLogin(user) {
+  mounted(){
+    this.loadUsers()
+  },
+  methods: { 
+     loadUsers: async function() {
+        const data = await fetch('./usuarios.json')
+        this.usuarios = await data.json()
+    },
+      checkLogin(user) {
       // eslint-disable-next-line
       console.log(user.name)
       this.auth = true
-    }
+    },
   }
 }
 </script>

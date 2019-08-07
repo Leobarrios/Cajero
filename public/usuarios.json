@@ -1,0 +1,5 @@
+[
+    {"nombre": "Leo", "pass": "1234", "saldo": 9000, "limite": 4000},
+    {"nombre": "Pablo", "pass": "5678", "saldo": 12000, "limite": 5000},
+    {"nombre": "Maria", "pass": "4321", "saldo": 1000, "limite": 2500}
+]
