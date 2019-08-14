@@ -10,7 +10,8 @@
     <div class="white-container">
       <div class="menu-container">
         <h1 class="tu-cuenta">Login</h1>
-        <input type="password" v-model="pass" placeholder="contraseña">
+        <!-- <input v-model="emailIng" type="email" placeholder="Nombre"> -->
+        <input type="password" v-model="user.pass" placeholder="contraseña">
         <button class="links" @click="enter()">Entrar</button>
       </div>
     </div>
@@ -22,16 +23,15 @@ export default {
   data() {
     return {
       user: {
-        name: 'nombre usuario', 
-        pass: 'contraseña',
+        // email: 'nombre usuario', 
+        pass: '',
       },
-      pass: '',
     }
   },
   methods: {
     enter() {
-      this.$emit('enter', this.user)
-      this.$emit('enter',  this.pass )
+    
+      this.$emit('enter',  this.user.pass )
     }
   }
 }
@@ -51,3 +51,4 @@ export default {
       border: 1px solid #979797;
       border-radius: 8px;
       background-color: #fff;
+  }

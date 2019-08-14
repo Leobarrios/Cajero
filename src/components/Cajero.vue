@@ -3,7 +3,7 @@
     <div class="header">
       <img class="logo" src="../assets/logo.png" />
       <div class="align-left">
-        <span id="nombre">Bienvenido/a</span>
+        <span id="nombre">Bienvenido/a {{usuarioActivo.nombre}}</span>
         <img class="avatar" src="../assets/avatar.svg" />
       </div>
     </div>
@@ -19,8 +19,8 @@
       <div class="green-container">
         <div class="cuenta-info">
           <p>Saldo en tu cuenta</p>
-          <h3 id="saldo-cuenta">$</h3>
-          <p id="limite-extraccion">Tu límite de extracción es:</p>
+          <h3 id="saldo-cuenta">${{usuarioActivo.saldo}}</h3>
+          <p id="limite-extraccion">Tu límite de extracción es: {{usuarioActivo.limite}}</p>
         </div>
       </div>
     </div>
@@ -29,6 +29,7 @@
 
 <script>
 export default {
+  props: ["usuarioActivo"],
   name: "Cajero",
   data() {
     return {
@@ -36,26 +37,19 @@ export default {
     }
   },
   mounted() {
-    this.validar()
+    this.cargarServicios()
   },
   methods: {
-    validar() {
-      let txt = prompt("Ingrese la clave:");
-      if (txt == null || txt == "") {
-        // "User cancelled the prompt."
-        this.validar()
-      } else{
-        let pass = parseInt(txt)
-        if (parseInt(pass) === 1122) {
-          this.auth = true
-        }
-      }
-    }
+   cargarServicios: async function() {
+        const data = await fetch('./servicios.json')
+        this.servicios = await data.json()
   }
-};
+},
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style>
 
 .avatar {
